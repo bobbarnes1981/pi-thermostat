@@ -1,0 +1,8 @@
+{
+    "temp_adj": 0,
+    "thinger": {
+        "user": "thinger_username",
+	"bucket_id": "thinger_bucket_id",
+	"auth_key": "thinger_auth_key"
+    }
+}
