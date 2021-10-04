@@ -18,6 +18,7 @@ class Service(Thread):
             print("Measured: {0}".format(current_temperature))
             required_temperature = self.schedule.get_required_temperature()
             heating_state = current_temperature < required_temperature
+            print("Heating required: {0}".format(heating_state))
             self.heater.set_state(heating_state)
             self.storage.store(required_temperature, current_temperature, heating_state)
             time.sleep(60)

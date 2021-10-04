@@ -31,5 +31,7 @@ class Schedule(object):
         }
     def get_required_temperature(self):
         t = datetime.now().time()
-        return self.data[t.hour]
+        required_temperature = self.data[t.hour]
+        print("Required: {0}".format(required_temperature))
+        return required_temperature
 
