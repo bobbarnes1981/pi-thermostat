@@ -1,4 +1,5 @@
 
+import logging
 import requests
 import json
 
@@ -8,8 +9,7 @@ class Thinger(object):
         self.rest_uri = self.uriformat.format(user=user, bucket_id=bucket_id, auth_key=auth_key)
     def store(self, required_temp, current_temp, heating_state):
         try:
-            #print(self.rest_uri)
-            print("Stored: {0} {1} {2}".format(required_temp, current_temp, heating_state))
+            logging.info("Stored: {0} {1} {2}".format(required_temp, current_temp, heating_state))
             payload = {
                 'required_temperature_c' : required_temp,
                 'current_temperature_c' : current_temp,
@@ -17,8 +17,8 @@ class Thinger(object):
             }
             header = { 'content-type': 'application/json' }
             response = requests.post(self.rest_uri, data=json.dumps(payload), headers=header)
-            print(response.status_code)
-            print(response.text)
+            logging.info("Status: {0}".format(response.status_code))
+            logging.info("Response: {0}".format(response.text))
         except Exception as e:
-            print(e)
+            logging.error(e)
 

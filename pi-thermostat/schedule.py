@@ -1,4 +1,6 @@
 
+import logging
+
 from datetime import datetime
 
 class Schedule(object):
@@ -32,6 +34,6 @@ class Schedule(object):
     def get_required_temperature(self):
         t = datetime.now().time()
         required_temperature = self.data[t.hour]
-        print("Required: {0}".format(required_temperature))
+        logging.info("Required: {0}".format(required_temperature))
         return required_temperature
 

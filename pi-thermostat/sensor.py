@@ -1,10 +1,12 @@
 
+import logging
 import os
 
 class Sensor(object):
     def __init__(self, temp_adj):
         self.path = self.get_path()
         self.temp_adj = temp_adj
+        logging.info("Sensor path: {0}".format(self.path))
     def get_path(self):
         BASE = '/sys/bus/w1/devices/'
         FILE = '/w1_slave'
@@ -22,6 +24,8 @@ class Sensor(object):
             time.sleep(0.5)
             raw = self.raw()
         temp = float(raw[1].strip()[-5:]) / 1000 # convert to decimal
+        logging.info("Measured: {0}".format(temp))
         temp = temp + self.temp_adj # adjust for rubbish sensors
+        logging.info("Adjusted: {0}".format(temp))
         return temp
 

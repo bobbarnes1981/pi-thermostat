@@ -1,5 +1,6 @@
 
 import json
+import logging
 
 from sensor import Sensor
 from service import Service
@@ -10,6 +11,8 @@ from schedule import Schedule
 config = {}
 with open('config.json') as config_file:
     config = json.load(config_file)
+
+logging.basicConfig(level=logging.DEBUG)
 
 srv = Service(
     Sensor(config['temp_adj']),
