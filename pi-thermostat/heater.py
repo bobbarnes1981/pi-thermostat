@@ -6,7 +6,7 @@ class Heater(object):
     def __init__(self, pin):
         self.pin = pin
         self.heating = False
-        GPIO.setmode(GPIO.BOARD)
+        GPIO.setmode(GPIO.BCM)
         GPIO.setup(self.pin, GPIO.OUT)
         GPIO.output(self.pin, self.heating)
     def set_state(self, heating):
