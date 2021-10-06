@@ -10,7 +10,7 @@
     "outside": {
         "temp_adj": 0,
         "serial": null
-    }
+    },
     "thinger": {
         "user": "thinger_username",
         "bucket_id": "thinger_bucket_id",
