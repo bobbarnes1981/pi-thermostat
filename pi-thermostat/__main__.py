@@ -15,10 +15,12 @@ with open('config.json') as config_file:
 logging.basicConfig(level=logging.DEBUG)
 
 srv = Service(
-    Sensor(config['temp_adj']),
+    Sensor(config['inside']['serial'], config['inside']['temp_adj']),
+    None,
     Heater(),
     Schedule(),
-    Thinger(config['thinger']['user'], config['thinger']['bucket_id'], config['thinger']['auth_key'])
+    Thinger(config['thinger']['user'], config['thinger']['bucket_id'], config['thinger']['auth_key']),
+    config['delay_seconds']
 )
 #srv.daemon = True
 srv.start()
