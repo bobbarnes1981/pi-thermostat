@@ -1,5 +1,8 @@
 {
     "delay_seconds": 60,
+    "heater": {
+        "pin": 17
+    },
     "inside": {
         "temp_adj": 0,
         "serial": null

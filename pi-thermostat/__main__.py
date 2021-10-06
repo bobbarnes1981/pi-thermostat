@@ -17,7 +17,7 @@ logging.basicConfig(level=logging.DEBUG)
 srv = Service(
     Sensor(config['inside']['serial'], config['inside']['temp_adj']),
     None,
-    Heater(),
+    Heater(config['heater']['pin']),
     Schedule(),
     Thinger(config['thinger']['user'], config['thinger']['bucket_id'], config['thinger']['auth_key']),
     config['delay_seconds']
