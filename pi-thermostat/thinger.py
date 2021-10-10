@@ -9,7 +9,7 @@ class Thinger(object):
         self.rest_uri = self.uriformat.format(user=user, bucket_id=bucket_id, auth_key=auth_key)
     def store(self, required_temp, current_temp, heating_state, outside_temp):
         try:
-            logging.info("Stored: {0} {1} {2}".format(required_temp, current_temp, heating_state))
+            logging.info("Stored: {0} {1} {2} {3}".format(required_temp, current_temp, heating_state, outside_temp))
             payload = {
                 'required_temperature_c' : required_temp,
                 'current_temperature_c' : current_temp,
