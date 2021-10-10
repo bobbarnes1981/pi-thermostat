@@ -29,7 +29,7 @@ class Sensor(object):
             while raw[0].strip()[-3:] != 'YES':
                 time.sleep(0.5)
                 raw = self.raw()
-            temp = float(raw[1].strip()[-5:]) / 1000 # convert to decimal
+            temp = float(raw[1].strip()[raw[1].find("=")+1:]) / 1000 # convert to decimal
             logging.info("Measured: {0}".format(temp))
             temp = temp + self.temp_adj # adjust for rubbish sensors
             logging.info("Adjusted: {0}".format(temp))
