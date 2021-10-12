@@ -18,7 +18,7 @@ srv = Service(
     Sensor(config['inside']['serial'], config['inside']['temp_adj']),
     Sensor(config['outside']['serial'], config['outside']['temp_adj']),
     Heater(config['heater']['pin']),
-    Schedule(),
+    Schedule(config['schedule']),
     Thinger(config['thinger']['user'], config['thinger']['bucket_id'], config['thinger']['auth_key']),
     config['delay_seconds']
 )
