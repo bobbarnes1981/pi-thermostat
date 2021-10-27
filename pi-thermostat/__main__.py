@@ -1,6 +1,7 @@
 
 import json
 import logging
+import sys
 
 from sensor import Sensor
 from service import Service
@@ -8,8 +9,13 @@ from thinger import Thinger
 from heater import Heater
 from schedule import Schedule
 
+config_path = 'config.json'
+if len(sys.argv) == 2:
+    config_path = sys.argv[1]
+print("Config: {0}".format(config_path))
+
 config = {}
-with open('config.json') as config_file:
+with open(config_path) as config_file:
     config = json.load(config_file)
 
 logging.basicConfig(level=logging.DEBUG)
