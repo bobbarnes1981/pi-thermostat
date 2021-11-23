@@ -34,14 +34,18 @@ class Schedule(object):
             print(e)
         return rows == 0
     def db_populate(self):
+        default_schedule = {
+            "0": self.FROST_PROTECTION,
+            "7": 18,
+            "16": self.FROST_PROTECTION
+        }
         try:
             con = sqlite3.connect(self.database)
             cur = con.cursor()
-            qry = 'INSERT INTO schedule (day, hour, temperature) VALUES (?, ?, ?)'
-            default_temperature = self.FROST_PROTECTION
+            qry = 'INSERT INTO schedule (day, hour, temperature) VALUES (?, ?, ?);'
             for day in range(0, 7):
-                for hour in range(0, 24):
-                    cur.execute(qry, (day, hour, default_temperature))
+                for hour,temperature in default_schedule.items():
+                    cur.execute(qry, (day, hour, temperature))
             con.commit()
             con.close()
         except Exception as e:
@@ -52,7 +56,7 @@ class Schedule(object):
         try:
             con = sqlite3.connect(self.database)
             cur = con.cursor()
-            qry = 'SELECT temperature FROM schedule WHERE day = ? AND hour = ?'
+            qry = 'SELECT temperature FROM schedule WHERE day = ? AND hour <= ? ORDER BY hour DESC LIMIT 1;'
             res = cur.execute(qry, (t.weekday(), t.hour)).fetchone()
             required_temperature = res[0]
             con.close()
